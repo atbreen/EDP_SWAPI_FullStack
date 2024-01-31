@@ -1,6 +1,6 @@
-const express = require("express");
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+import express from "express";
+import mongodb from "mongodb";
+const { MongoClient } = mongodb
 
 // Connection URL
 const url = 'mongodb://localhost:27017';
@@ -8,31 +8,37 @@ const client = new MongoClient(url);
 const app = express();
 // Database Name
 const dbName = 'swapi';
+let db
 
-async function getFilms() {
-    try{
-        const database = client.db(dbName);
-        const filmsCol = database.collection('films');
-        const films = await filmsCol.find().toArray();
-        console.log('Films: ' + JSON.stringify(books));
-    } finally {
-        await client.close();
-    }
+// Use connect method to connect to the server
+try {
+    await client.connect(url)
+    console.log("Connected successfully to server");
+    db = client.db(dbName);
+    // console.log(db)
+} catch (err) {
+    console.error('cant connect', err)
 }
 
-app.get('/api/planets', function(req,res){
-    return 1
+
+
+app.get('/api/films', async function (req, res) {
+    //get all the films
+    const filmsCol = db.collection('films');
+    const films = await filmsCol.find().toArray();
+    console.log('Films: ' + JSON.stringify(films));
+
+    //return all the films
+    res.send(films)
 })
 
 
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, client) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
- 
-  const db = client.db(dbName);
- 
-  client.close();
-});
+
+
 
 app.listen(3000)
+process.on("SIGINT", () => {
+    client.close();
+    console.log('sigint');
+    process.exit();
+})
