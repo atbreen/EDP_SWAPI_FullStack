@@ -1,8 +1,14 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import './App.css'
+import Home from './components/Home'
+
 
 function App() {
-  return 1
+  return (
+    <>
+      <Home />
+    </>
+  )
 }
 
 export default App
