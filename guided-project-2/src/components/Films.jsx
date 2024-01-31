@@ -1,3 +1,18 @@
+import { React, useState, useEffect } from 'react'
+
 export default function Films() {
-    return <h1>This is the filmsPage</h1>
+    const [films, setFilms] = useState([])
+    useEffect(() => {
+        fetch('/api/films').then( res => res.json()).then(films => setFilms(films))
+    }, [])
+
+    return (
+        <>
+            <h1>Films</h1>
+                <section id="films">
+                    {films.map(film => film.title)}
+                </section>
+        </>
+
+    )
 }
