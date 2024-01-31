@@ -1,3 +1,3 @@
 export default function Films() {
-    return 1
+    return <h1>This is the filmsPage</h1>
 }
