@@ -8,14 +8,14 @@ import './App.css'
 
 
 function App() {
-  retur
-  (<div>
-    <h1>hello</h1>
-    <Outlet />
+  return (
+    <div>
+      <h1>hello</h1>
+      <Outlet />
 
-  </div>
-    )
-  
+    </div>
+  )
+
 }
 
 export default App

@@ -20,8 +20,6 @@ try {
     console.error('cant connect', err)
 }
 
-
-
 app.get('/api/films', async function (req, res) {
     //get all the films
     const filmsCol = db.collection('films');
@@ -31,10 +29,6 @@ app.get('/api/films', async function (req, res) {
     //return all the films
     res.send(films)
 })
-
-
-
-
 
 app.listen(3000)
 process.on("SIGINT", () => {
