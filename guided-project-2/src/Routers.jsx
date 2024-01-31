@@ -4,7 +4,7 @@ import App from './App'
 import Characters from './components/Characters'
 import Films from './components/Films'
 import Planets from './components/Planets'
-import { Home } from "./components/Home";
+import Home from "./components/Home";
 
 const Router = createBrowserRouter ([
     {
