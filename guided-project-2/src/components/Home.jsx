@@ -1,3 +1,8 @@
 export const Home = () => {
-    return <h1>this is the homepage</h1>
+    return (
+        <>
+            <h1>Star Wars Universe Lookup</h1>
+            <h2>These <i>are</i> the droids you're looking for...</h2>
+        </>
+    )
 }
