@@ -1,3 +1,3 @@
 export default function Planets() {
-    return 1
+    return <h1>this is the Planets page</h1>
 }

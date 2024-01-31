@@ -8,8 +8,6 @@ export default function Home() {
             <h2>These <i>are</i> the droids you're looking for...</h2>
             <Search/>
             <Characters/>
-
-
         </>
     )
 }
