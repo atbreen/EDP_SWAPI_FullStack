@@ -6,27 +6,29 @@ import useGetCrossDocument from '../utils/useGetCrossDocument'
 export default function OneFilm() {
     const {id} = useParams()
     const film = useGetDocument("films", id)
-    const planetList = useGetCrossDocument("films", id, "planets")
-    const charactersList = useGetCrossDocument("films", id, "characters")
+    // const planets = useGetCrossDocument("films", id, "planets")
+    const characters = useGetCrossDocument("films", id, "characters")
+    console.log({characters})
    
     return (
         //  if film exists
         film !== null ? 
         <>
             <section id="charactersList">
-                <p>
+                <div>
                     <h1>
                         {film.title}
                     </h1>
-                </p>
-                <p>
+                </div>
+                <div>
                     <h2>Characters</h2>
-                </p>
-                <p>
-                    <h3>{charactersList.map(character => 
-                        {character.name}
-                    )}</h3>
-                </p>
+                </div>
+                <div>
+                    <h3>
+                    {characters.map(character => 
+                    character.name)}
+                    </h3>
+                </div>
             </section>
         </> : null
     )

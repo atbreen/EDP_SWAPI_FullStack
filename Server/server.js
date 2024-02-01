@@ -67,6 +67,17 @@ app.get('/api/characters/:id/films', async function (req, res) {
     res.send(films)
 })
 
+// get all characters from film
+app.get('/api/films/:id/characters', async function ( req, res) {
+    const id = req.params.id
+    const filmsCharCol = db.collection('films_characters')
+    const filmsChar = await filmsCharCol.find({"film_id":+id}).toArray()
+    const charsCol = db.collection('characters')
+    const mappedCharacters = filmsChar.map( fc => fc.character_id)
+    const characters = await charsCol.find({'id' : {$in: mappedCharacters}}).toArray()
+    res.send(characters)
+})
+
 // Planet GETs
 // get all the planets
 app.get('/api/planets', async function (req, res) {
