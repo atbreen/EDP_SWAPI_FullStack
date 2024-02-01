@@ -7,6 +7,7 @@ export default function OneCharacter() {
     const { id } = useParams()
     const character = useGetDocument("characters", id)
     const homeworld = useGetDocument("planets", character?.homeworld)
+    console.log("!!!!!!", homeworld?.id)
     const films = useGetCrossDocument("characters", id, "films")
 
     return (
@@ -21,7 +22,12 @@ export default function OneCharacter() {
                     </p>
                     <p>
                         <h3>Home World:</h3>
-                        {homeworld === null ? null : homeworld.name}
+                        {/* TODO: link to homeworld on planets page by planet id */}
+                        <Link
+                            to={`/planets/${homeworld?.id}`}
+                            key={homeworld?.id}>
+                            {homeworld === null ? null : homeworld.name}
+                        </Link>
 
                     </p>
                     <p>
