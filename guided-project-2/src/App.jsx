@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 // import { useState } from 'react'
-import Films from './components/Films'
+import Films from './components/GetAllFilms'
 import './App.css'
 
 

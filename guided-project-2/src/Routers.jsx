@@ -1,9 +1,9 @@
 // import {createHashRouter} from 'react-dom'
 import { createBrowserRouter } from "react-router-dom";
 import App from './App'
-import Characters from './components/Characters'
-import Films from './components/Films'
-import Planets from './components/Planets'
+import OneFilm from './components/OneFilm'
+import OnePlanet from './components/OnePlanet'
+import OneCharacter from "./components/OneCharacter";
 import Home from "./components/Home";
 
 const Router = createBrowserRouter ([
@@ -16,16 +16,16 @@ const Router = createBrowserRouter ([
                 element: <Home />
             },
             {
-                path: '/characters/',
-                element: <Characters />
+                path: '/characters/:id',
+                element: <OneCharacter />
             },
             {
-                path: '/films/',
-                element: <Films />
+                path: '/films/:id',
+                element: <OneFilm />
             },
             {
-                path: '/planets/',
-                element: <Planets />
+                path: '/planets/:id',
+                element: <OnePlanet />
             },
              
 

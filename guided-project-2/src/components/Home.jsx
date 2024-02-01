@@ -1,7 +1,5 @@
 import Search from "./Search"
-import Characters from "./Characters"
-import Films from "./Films"
-import Planets from "./Planets"
+import GetAllCharacters from "./GetAllCharacters"
 
 export default function Home() {
     return (
@@ -13,7 +11,7 @@ export default function Home() {
             <Search/>
             </section>
             
-            <Characters/>
+            <GetAllCharacters/>
 
         </>
     )

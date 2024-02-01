@@ -29,7 +29,7 @@ app.get('/api/films', async function (req, res) {
     res.send(films)
 })
 // get one film
-app.get('/api/film/:id', async function (req, res) {
+app.get('/api/films/:id', async function (req, res) {
     const id = req.params.id;
     const filmsCol = db.collection('films');
     const film = await filmsCol.findOne({"id":+id});
@@ -53,6 +53,18 @@ app.get('/api/characters/:id', async function (req, res) {
     const character = await charactersCol.findOne({"id":+id});
     console.log(character)
     res.send(character)
+})
+// get all films for character
+app.get('/api/characters/:id/films', async function (req, res) {
+    const id = req.params.id;
+    const charFilmsCol = db.collection('films_characters');
+    const charFilms = await charFilmsCol.find({"character_id":+id}).toArray();
+    console.log(charFilms)
+    const filmsCol = db.collection('films')
+    const mappedFilms = charFilms.map( cf => cf.film_id)
+    const films = await filmsCol.find({'id' : {$in: mappedFilms}}).toArray()
+    console.log(mappedFilms)
+    res.send(films)
 })
 
 // Planet GETs
