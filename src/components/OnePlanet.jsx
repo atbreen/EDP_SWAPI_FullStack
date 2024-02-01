@@ -11,7 +11,19 @@ export default function OneFilm() {
         planet !== null ?
             <>
                 <section id="charactersList">
-                    Planet info goes here!
+                    <p>
+                        <h1>
+                            {planet.name}
+                        </h1>
+                    </p>
+                    <p>
+                        <h2>Planet</h2>
+                    </p>
+                    <p>
+                        <h3>Climate</h3>
+                        {planet.climate}
+                        
+                    </p>
                 </section>
             </> : null
     )
