@@ -10,26 +10,71 @@ const app = express();
 const dbName = 'swapi';
 let db
 
-// Use connect method to connect to the server
+// Connect database to server
 try {
     await client.connect(url)
     console.log("Connected successfully to server");
     db = client.db(dbName);
-    // console.log(db)
 } catch (err) {
-    console.error('cant connect', err)
+    console.error("Cannot Connect", err)
 }
 
+// Film GETs
+// get all the films
 app.get('/api/films', async function (req, res) {
-    //get all the films
     const filmsCol = db.collection('films');
     const films = await filmsCol.find().toArray();
     console.log('Films: ' + JSON.stringify(films));
-
     //return all the films
     res.send(films)
 })
+// get one film
+app.get('/api/film/:id', async function (req, res) {
+    const id = req.params.id;
+    const filmsCol = db.collection('films');
+    const film = await filmsCol.findOne({"id":+id});
+    console.log(film)
+    res.send(film)
+})
 
+// Character GETs
+// get all the characters
+app.get('/api/characters', async function (req, res) {
+    const charactersCol = db.collection('characters');
+    const characters = await charactersCol.find().toArray();
+    console.log('Characters: ' + JSON.stringify(characters));
+    //return all the characters
+    res.send(characters)
+})
+// get one character
+app.get('/api/characters/:id', async function (req, res) {
+    const id = req.params.id;
+    const charactersCol = db.collection('characters');
+    const character = await charactersCol.findOne({"id":+id});
+    console.log(character)
+    res.send(character)
+})
+
+// Planet GETs
+// get all the planets
+app.get('/api/planets', async function (req, res) {
+    const planetsCol = db.collection('planets');
+    const planets = await planetsCol.find().toArray();
+    console.log('Planets: ' + JSON.stringify(planets));
+    //return all the planets
+    res.send(planets)
+})
+// get one planet
+app.get('/api/planets/:id', async function (req, res) {
+    const id = req.params.id;
+    const planetsCol = db.collection('planets');
+    const planet = await planetsCol.findOne({"id":+id});
+    console.log(planet)
+    res.send(planet)
+})
+
+
+// Express server listening
 app.listen(3000)
 process.on("SIGINT", () => {
     client.close();
